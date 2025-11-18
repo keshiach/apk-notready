@@ -44,6 +44,8 @@ dependencies {
     implementation("androidx.cardview:cardview:1.0.0")
 
 
+
+
     // ZeroMQ dependency
     implementation("org.zeromq:jeromq:0.5.2")
     implementation(libs.lifecycle.livedata.ktx)

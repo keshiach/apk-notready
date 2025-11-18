@@ -11,12 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.Guideline;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.example.controllerzmq.JoystickView;
 import com.example.controllerzmq.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.slider.Slider;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -26,225 +25,52 @@ public final class ActivityControllerBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final ImageButton Zatas;
-
-  @NonNull
-  public final ImageButton Zbawah;
-
-  @NonNull
-  public final ImageButton atas;
-
-  @NonNull
-  public final ImageButton bawah;
-
-  @NonNull
   public final BottomNavigationView bottomNavigation;
 
   @NonNull
   public final Button btnConnect;
 
   @NonNull
-  public final ImageButton btnSetting;
+  public final ImageButton btnRotateLeft;
 
   @NonNull
-  public final Button button;
+  public final ImageButton btnRotateRight;
+
+  @NonNull
+  public final ImageButton btnSetting;
 
   @NonNull
   public final ConstraintLayout controller;
 
   @NonNull
-  public final Slider gripper;
-
-  /**
-   * This binding is not available in all configurations.
-   * <p>
-   * Present:
-   * <ul>
-   *   <li>layout/</li>
-   * </ul>
-   *
-   * Absent:
-   * <ul>
-   *   <li>layout-land/</li>
-   * </ul>
-   */
-  @Nullable
-  public final Guideline guidelineCenterHorizontal;
-
-  /**
-   * This binding is not available in all configurations.
-   * <p>
-   * Present:
-   * <ul>
-   *   <li>layout/</li>
-   * </ul>
-   *
-   * Absent:
-   * <ul>
-   *   <li>layout-land/</li>
-   * </ul>
-   */
-  @Nullable
-  public final Guideline guidelineCenterVertical;
-
-  @NonNull
-  public final ImageButton kanan;
-
-  @NonNull
-  public final ImageButton kananatas;
-
-  @NonNull
-  public final ImageButton kananbawah;
-
-  @NonNull
-  public final ImageButton kiri;
-
-  @NonNull
-  public final ImageButton kiriatas;
-
-  @NonNull
-  public final ImageButton kiribawah;
+  public final JoystickView joystick;
 
   @NonNull
   public final TextView koord;
 
   @NonNull
-  public final ImageView tengah;
+  public final TextView valJoy;
 
-  /**
-   * This binding is not available in all configurations.
-   * <p>
-   * Present:
-   * <ul>
-   *   <li>layout/</li>
-   * </ul>
-   *
-   * Absent:
-   * <ul>
-   *   <li>layout-land/</li>
-   * </ul>
-   */
-  @Nullable
-  public final TextView textView10;
+  @NonNull
+  public final ImageView videoStream;
 
-  /**
-   * This binding is not available in all configurations.
-   * <p>
-   * Present:
-   * <ul>
-   *   <li>layout/</li>
-   * </ul>
-   *
-   * Absent:
-   * <ul>
-   *   <li>layout-land/</li>
-   * </ul>
-   */
-  @Nullable
-  public final TextView textView11;
-
-  /**
-   * This binding is not available in all configurations.
-   * <p>
-   * Present:
-   * <ul>
-   *   <li>layout/</li>
-   * </ul>
-   *
-   * Absent:
-   * <ul>
-   *   <li>layout-land/</li>
-   * </ul>
-   */
-  @Nullable
-  public final TextView textView2;
-
-  /**
-   * This binding is not available in all configurations.
-   * <p>
-   * Present:
-   * <ul>
-   *   <li>layout/</li>
-   * </ul>
-   *
-   * Absent:
-   * <ul>
-   *   <li>layout-land/</li>
-   * </ul>
-   */
-  @Nullable
-  public final TextView textView3;
-
-  /**
-   * This binding is not available in all configurations.
-   * <p>
-   * Present:
-   * <ul>
-   *   <li>layout/</li>
-   * </ul>
-   *
-   * Absent:
-   * <ul>
-   *   <li>layout-land/</li>
-   * </ul>
-   */
-  @Nullable
-  public final TextView textView4;
-
-  /**
-   * This binding is not available in all configurations.
-   * <p>
-   * Present:
-   * <ul>
-   *   <li>layout/</li>
-   * </ul>
-   *
-   * Absent:
-   * <ul>
-   *   <li>layout-land/</li>
-   * </ul>
-   */
-  @Nullable
-  public final TextView textView8;
-
-  private ActivityControllerBinding(@NonNull ConstraintLayout rootView, @NonNull ImageButton Zatas,
-      @NonNull ImageButton Zbawah, @NonNull ImageButton atas, @NonNull ImageButton bawah,
+  private ActivityControllerBinding(@NonNull ConstraintLayout rootView,
       @NonNull BottomNavigationView bottomNavigation, @NonNull Button btnConnect,
-      @NonNull ImageButton btnSetting, @NonNull Button button, @NonNull ConstraintLayout controller,
-      @NonNull Slider gripper, @Nullable Guideline guidelineCenterHorizontal,
-      @Nullable Guideline guidelineCenterVertical, @NonNull ImageButton kanan,
-      @NonNull ImageButton kananatas, @NonNull ImageButton kananbawah, @NonNull ImageButton kiri,
-      @NonNull ImageButton kiriatas, @NonNull ImageButton kiribawah, @NonNull TextView koord,
-      @NonNull ImageView tengah, @Nullable TextView textView10, @Nullable TextView textView11,
-      @Nullable TextView textView2, @Nullable TextView textView3, @Nullable TextView textView4,
-      @Nullable TextView textView8) {
+      @NonNull ImageButton btnRotateLeft, @NonNull ImageButton btnRotateRight,
+      @NonNull ImageButton btnSetting, @NonNull ConstraintLayout controller,
+      @NonNull JoystickView joystick, @NonNull TextView koord, @NonNull TextView valJoy,
+      @NonNull ImageView videoStream) {
     this.rootView = rootView;
-    this.Zatas = Zatas;
-    this.Zbawah = Zbawah;
-    this.atas = atas;
-    this.bawah = bawah;
     this.bottomNavigation = bottomNavigation;
     this.btnConnect = btnConnect;
+    this.btnRotateLeft = btnRotateLeft;
+    this.btnRotateRight = btnRotateRight;
     this.btnSetting = btnSetting;
-    this.button = button;
     this.controller = controller;
-    this.gripper = gripper;
-    this.guidelineCenterHorizontal = guidelineCenterHorizontal;
-    this.guidelineCenterVertical = guidelineCenterVertical;
-    this.kanan = kanan;
-    this.kananatas = kananatas;
-    this.kananbawah = kananbawah;
-    this.kiri = kiri;
-    this.kiriatas = kiriatas;
-    this.kiribawah = kiribawah;
+    this.joystick = joystick;
     this.koord = koord;
-    this.tengah = tengah;
-    this.textView10 = textView10;
-    this.textView11 = textView11;
-    this.textView2 = textView2;
-    this.textView3 = textView3;
-    this.textView4 = textView4;
-    this.textView8 = textView8;
+    this.valJoy = valJoy;
+    this.videoStream = videoStream;
   }
 
   @Override
@@ -274,30 +100,6 @@ public final class ActivityControllerBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.Zatas;
-      ImageButton Zatas = ViewBindings.findChildViewById(rootView, id);
-      if (Zatas == null) {
-        break missingId;
-      }
-
-      id = R.id.Zbawah;
-      ImageButton Zbawah = ViewBindings.findChildViewById(rootView, id);
-      if (Zbawah == null) {
-        break missingId;
-      }
-
-      id = R.id.atas;
-      ImageButton atas = ViewBindings.findChildViewById(rootView, id);
-      if (atas == null) {
-        break missingId;
-      }
-
-      id = R.id.bawah;
-      ImageButton bawah = ViewBindings.findChildViewById(rootView, id);
-      if (bawah == null) {
-        break missingId;
-      }
-
       id = R.id.bottom_navigation;
       BottomNavigationView bottomNavigation = ViewBindings.findChildViewById(rootView, id);
       if (bottomNavigation == null) {
@@ -310,65 +112,29 @@ public final class ActivityControllerBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnRotateLeft;
+      ImageButton btnRotateLeft = ViewBindings.findChildViewById(rootView, id);
+      if (btnRotateLeft == null) {
+        break missingId;
+      }
+
+      id = R.id.btnRotateRight;
+      ImageButton btnRotateRight = ViewBindings.findChildViewById(rootView, id);
+      if (btnRotateRight == null) {
+        break missingId;
+      }
+
       id = R.id.btnSetting;
       ImageButton btnSetting = ViewBindings.findChildViewById(rootView, id);
       if (btnSetting == null) {
         break missingId;
       }
 
-      id = R.id.button;
-      Button button = ViewBindings.findChildViewById(rootView, id);
-      if (button == null) {
-        break missingId;
-      }
-
       ConstraintLayout controller = (ConstraintLayout) rootView;
 
-      id = R.id.gripper;
-      Slider gripper = ViewBindings.findChildViewById(rootView, id);
-      if (gripper == null) {
-        break missingId;
-      }
-
-      id = R.id.guideline_center_horizontal;
-      Guideline guidelineCenterHorizontal = ViewBindings.findChildViewById(rootView, id);
-
-      id = R.id.guideline_center_vertical;
-      Guideline guidelineCenterVertical = ViewBindings.findChildViewById(rootView, id);
-
-      id = R.id.kanan;
-      ImageButton kanan = ViewBindings.findChildViewById(rootView, id);
-      if (kanan == null) {
-        break missingId;
-      }
-
-      id = R.id.kananatas;
-      ImageButton kananatas = ViewBindings.findChildViewById(rootView, id);
-      if (kananatas == null) {
-        break missingId;
-      }
-
-      id = R.id.kananbawah;
-      ImageButton kananbawah = ViewBindings.findChildViewById(rootView, id);
-      if (kananbawah == null) {
-        break missingId;
-      }
-
-      id = R.id.kiri;
-      ImageButton kiri = ViewBindings.findChildViewById(rootView, id);
-      if (kiri == null) {
-        break missingId;
-      }
-
-      id = R.id.kiriatas;
-      ImageButton kiriatas = ViewBindings.findChildViewById(rootView, id);
-      if (kiriatas == null) {
-        break missingId;
-      }
-
-      id = R.id.kiribawah;
-      ImageButton kiribawah = ViewBindings.findChildViewById(rootView, id);
-      if (kiribawah == null) {
+      id = R.id.joystick;
+      JoystickView joystick = ViewBindings.findChildViewById(rootView, id);
+      if (joystick == null) {
         break missingId;
       }
 
@@ -378,35 +144,21 @@ public final class ActivityControllerBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.tengah;
-      ImageView tengah = ViewBindings.findChildViewById(rootView, id);
-      if (tengah == null) {
+      id = R.id.valJoy;
+      TextView valJoy = ViewBindings.findChildViewById(rootView, id);
+      if (valJoy == null) {
         break missingId;
       }
 
-      id = R.id.textView10;
-      TextView textView10 = ViewBindings.findChildViewById(rootView, id);
+      id = R.id.videoStream;
+      ImageView videoStream = ViewBindings.findChildViewById(rootView, id);
+      if (videoStream == null) {
+        break missingId;
+      }
 
-      id = R.id.textView11;
-      TextView textView11 = ViewBindings.findChildViewById(rootView, id);
-
-      id = R.id.textView2;
-      TextView textView2 = ViewBindings.findChildViewById(rootView, id);
-
-      id = R.id.textView3;
-      TextView textView3 = ViewBindings.findChildViewById(rootView, id);
-
-      id = R.id.textView4;
-      TextView textView4 = ViewBindings.findChildViewById(rootView, id);
-
-      id = R.id.textView8;
-      TextView textView8 = ViewBindings.findChildViewById(rootView, id);
-
-      return new ActivityControllerBinding((ConstraintLayout) rootView, Zatas, Zbawah, atas, bawah,
-          bottomNavigation, btnConnect, btnSetting, button, controller, gripper,
-          guidelineCenterHorizontal, guidelineCenterVertical, kanan, kananatas, kananbawah, kiri,
-          kiriatas, kiribawah, koord, tengah, textView10, textView11, textView2, textView3,
-          textView4, textView8);
+      return new ActivityControllerBinding((ConstraintLayout) rootView, bottomNavigation,
+          btnConnect, btnRotateLeft, btnRotateRight, btnSetting, controller, joystick, koord,
+          valJoy, videoStream);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -9,182 +9,10 @@
 <!--    tools:context=".CONTROLLER">-->
 
     <!-- Garis bantu tengah -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_center_vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
 
     <!-- Tombol arah dan tengah -->
-    <ImageView
-        android:id="@+id/tengah"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/tengah" />
-
-    <ImageButton
-        android:id="@+id/kiribawah"
-        android:importantForAccessibility="no"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="@color/white"
-        app:srcCompat="@drawable/serong_kiri_bawah"
-        app:layout_constraintHorizontal_bias="0.245"
-        app:layout_constraintVertical_bias="0.613"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <ImageButton
-        android:id="@+id/kiriatas"
-        android:importantForAccessibility="no"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        app:srcCompat="@drawable/serong_kiri_atas"
-        app:layout_constraintHorizontal_bias="0.245"
-        app:layout_constraintVertical_bias="0.377"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <ImageButton
-        android:id="@+id/bawah"
-        android:importantForAccessibility="no"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        app:srcCompat="@drawable/bawah_"
-        android:background="@color/white"
-        app:layout_constraintVertical_bias="0.621"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <ImageButton
-        android:id="@+id/kanan"
-        android:importantForAccessibility="no"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        app:srcCompat="@drawable/kanan"
-        android:background="@color/white"
-        app:layout_constraintHorizontal_bias="0.759"
-        app:layout_constraintVertical_bias="0.499"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <ImageButton
-        android:id="@+id/kiri"
-        android:importantForAccessibility="no"
-        android:background="@color/white"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        app:srcCompat="@drawable/kiri"
-        app:layout_constraintHorizontal_bias="0.234"
-        app:layout_constraintVertical_bias="0.499"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <ImageButton
-        android:id="@+id/kananbawah"
-        android:importantForAccessibility="no"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="@color/white"
-        app:srcCompat="@drawable/serong_kanan_bawah_"
-        app:layout_constraintHorizontal_bias="0.748"
-        app:layout_constraintVertical_bias="0.613"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <ImageButton
-        android:id="@+id/kananatas"
-        android:importantForAccessibility="no"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="@color/white"
-        app:srcCompat="@drawable/serong_kanan_atas"
-        app:layout_constraintHorizontal_bias="0.748"
-        app:layout_constraintVertical_bias="0.376"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <ImageButton
-        android:id="@+id/atas"
-        android:importantForAccessibility="no"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        app:srcCompat="@drawable/atas"
-        android:background="@color/white"
-        app:layout_constraintVertical_bias="0.371"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
 
     <!-- Z-axis -->
-    <ImageButton
-        android:id="@+id/Zatas"
-        android:importantForAccessibility="no"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        app:srcCompat="@drawable/zatas"
-        android:background="@color/white"
-        app:layout_constraintHorizontal_bias="0.304"
-        app:layout_constraintVertical_bias="0.763"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <ImageButton
-        android:id="@+id/Zbawah"
-        android:importantForAccessibility="no"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        app:srcCompat="@drawable/zbawah"
-        android:background="@color/white"
-        app:layout_constraintHorizontal_bias="0.697"
-        app:layout_constraintVertical_bias="0.764"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <com.google.android.material.slider.Slider
-        android:id="@+id/gripper"
-        android:importantForAccessibility="no"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:valueFrom="0"
-        android:valueTo="100"
-        app:layout_constraintTop_toBottomOf="@id/Zbawah"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp"
-        />
 
     <!-- Bottom Navigation -->
 
@@ -199,20 +27,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/bottom_nav_menu" >
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <TextView
         android:id="@+id/koord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
         android:text="koordinat"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.231" />
+        app:layout_constraintVertical_bias="0.29" />
 
     <Button
         android:id="@+id/btnConnect"
@@ -245,89 +74,70 @@
         app:layout_constraintVertical_bias="0.143"
         app:srcCompat="@drawable/ip" />
 
-    <Button
-        android:id="@+id/button"
+    <TextView
+        android:id="@+id/valJoy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:layout_centerHorizontal="true"
+        android:text="Gerakkan Joystick!"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/bottom_navigation"
-        app:layout_constraintHorizontal_bias="0.867"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintVertical_bias="0.356" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+Y"
+    <com.example.controllerzmq.JoystickView
+        android:id="@+id/joystick"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.87"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/btnRotateRight"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.835"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.461"
+        app:srcCompat="@drawable/rotateright" />
+
+    <ImageButton
+        android:id="@+id/btnRotateLeft"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         app:layout_constraintBottom_toBottomOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.161"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.33" />
+        app:layout_constraintVertical_bias="0.461"
+        app:srcCompat="@drawable/rotateleft" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
+    <ImageView
+        android:id="@+id/videoStream"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.223"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.452" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.77"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.452" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-Y"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.568" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.283"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.695" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.716"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.695" />
+        app:layout_constraintVertical_bias="0.012" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,34 +19,33 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.google.android.material.slider.Slider;
-
 import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button button;
-    private ImageButton atas, bawah, kanan, kiri, kiriatas, kiribawah, kananatas, kananbawah, Zatas, Zbawah;
+    private UDPReceiver receiver;
+    private ImageView videoStream;
+//    private Button button;
     private Button btnConnect;
-    private  ImageButton btnSetting;
-    private Slider slider;
+    private ImageButton btnSetting, btnRotateRight, btnRotateLeft;
     private TextView koor;
     private String msg;
+    private JoystickView joystick;
+    private TextView petunjuk;
 
-    private float valX = 0f, valY = 0f, valZ = 0f, valGripper = 0f;
+    private float valX = 0f, valY = 0f, valRotation =0f;
 
     private Handler handler = new Handler(Looper.getMainLooper());
-    private Runnable runnable;
 
     private ZContext context;
     private ZMQ.Socket socket;
     private boolean isConnected = false;
-    private int kondisiLed = 1;
+//    private int kondisiLed = 1;
 
-    private String serverIp = "192.168.1.100";
-    private int serverPort = 5555;
+    private String serverIp ="10.107.137.167";
+    private int serverPort = 6000;
 
     private SharedPreferences prefs;
 
@@ -57,6 +55,15 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_controller);
 
+        videoStream = findViewById(R.id.videoStream);
+
+    // MULAI RECEIVER
+        receiver = new UDPReceiver(6000, bmp -> runOnUiThread(() -> {
+            videoStream.setImageBitmap(bmp);
+        }));
+        receiver.start();
+
+
         setupSystemInsets();
 
         prefs = getSharedPreferences("ZMQ_PREFS", MODE_PRIVATE);
@@ -64,40 +71,14 @@ public class MainActivity extends AppCompatActivity {
         serverPort = prefs.getInt("PORT", serverPort);
 
         // init views
-        button = findViewById(R.id.button);
-        slider = findViewById(R.id.gripper);
+
         btnConnect = findViewById(R.id.btnConnect);
         btnSetting = findViewById(R.id.btnSetting);
-        atas = findViewById(R.id.atas);
-        bawah = findViewById(R.id.bawah);
-        kanan = findViewById(R.id.kanan);
-        kiri = findViewById(R.id.kiri);
-        kiriatas = findViewById(R.id.kiriatas);
-        kiribawah = findViewById(R.id.kiribawah);
-        kananatas = findViewById(R.id.kananatas);
-        kananbawah = findViewById(R.id.kananbawah);
-        Zatas = findViewById(R.id.Zatas);
-        Zbawah = findViewById(R.id.Zbawah);
         koor = findViewById(R.id.koord);
-
-        // setup button loops
-        setButtonPress(atas);
-        setButtonPress(kananatas);
-        setButtonPress(kiriatas);
-        setButtonPress(bawah);
-        setButtonPress(kananbawah);
-        setButtonPress(kiribawah);
-        setButtonPress(kanan);
-        setButtonPress(kiri);
-        setButtonPress(Zatas);
-        setButtonPress(Zbawah);
-
-        // slider listener
-        slider.addOnChangeListener((s, value, fromUser) -> {
-            valGripper = value;
-            updateCoordinateDisplay();
-            if (isConnected) sendCoordinate(valX, valY, valZ, valGripper);
-        });
+        joystick = findViewById(R.id.joystick);
+        petunjuk = findViewById(R.id.valJoy);
+        btnRotateRight = findViewById(R.id.btnRotateRight);
+        btnRotateLeft = findViewById(R.id.btnRotateLeft);
 
         // connect/disconnect button
         btnConnect.setOnClickListener(v -> {
@@ -108,19 +89,47 @@ public class MainActivity extends AppCompatActivity {
         // settings button
         btnSetting.setOnClickListener(v -> showIpPortDialog());
 
-        // ===== automatic connect =====
+        //automatic connect
         handler.postDelayed(() -> {
             if (!isConnected) connectToServer();
         }, 500);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isConnected){
-                   nyalakanLed();
 
+
+        // Setup joystick listener
+        joystick.setJoystickListener(new JoystickView.JoystickListener() {
+            @Override
+            public void onJoystickMoved(float xPercent, float yPercent, int direction) {
+                // Convert percentage to your coordinate system (0-180)
+                valX = xPercent  * 90; // converts -1 to 1 into 0 to 180
+                valY = yPercent  * 90; // converts -1 to 1 into 0 to 180
+
+                updateCoordinateDisplay();
+
+                if (isConnected) {
+                    sendCoordinate(valX, valY);
                 }
+
+                // Update petunjuk text
+                String dirText = getDirectionText(direction);
+                petunjuk.setText(String.format("X: %.2f | Y: %.2f\n%s",
+                        xPercent, yPercent, dirText));
             }
         });
+    }
+
+    private String getDirectionText(int direction) {
+        switch (direction) {
+            case 0: return "CENTER ●";
+            case 1: return "ATAS ↑";
+            case 2: return "KANAN ATAS ↗";
+            case 3: return "KANAN →";
+            case 4: return "KANAN BAWAH ↘";
+            case 5: return "BAWAH ↓";
+            case 6: return "KIRI BAWAH ↙";
+            case 7: return "KIRI ←";
+            case 8: return "KIRI ATAS ↖";
+            default: return "???";
+        }
     }
 
     private void setupSystemInsets() {
@@ -132,61 +141,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void setButtonPress(ImageButton btn) {
-        btn.setOnTouchListener((v, event) -> {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:
-                    startButtonLoop(v);
-                    return true;
-                case MotionEvent.ACTION_UP:
-                case MotionEvent.ACTION_CANCEL:
-                    stopButtonLoop();
-                    return true;
-            }
-            return false;
-        });
-    }
-
-    private void startButtonLoop(View v) {
-        if (runnable != null) handler.removeCallbacks(runnable);
-        runnable = new Runnable() {
-            @Override
-            public void run() {
-                int id = v.getId();
-                if (id == R.id.bawah || id == R.id.kananbawah || id == R.id.kiribawah) valY -= 15;
-                if (id == R.id.atas || id == R.id.kananatas || id == R.id.kiriatas) valY += 15;
-                if (id == R.id.kiri || id == R.id.kiribawah || id == R.id.kiriatas) valX -= 15;
-                if (id == R.id.kanan || id == R.id.kananbawah || id == R.id.kananatas) valX += 15;
-                if (id == R.id.Zatas) valZ += 15;
-                if (id == R.id.Zbawah) valZ -= 15;
-                valX = Math.max(0, Math.min(180, valX));
-                valY = Math.max(0, Math.min(180, valY));
-                valZ = Math.max(0, Math.min(180, valZ));
-
-                updateCoordinateDisplay();
-                if (isConnected) sendCoordinate(valX, valY, valZ, valGripper);
-                handler.postDelayed(this, 100);
-            }
-        };
-        handler.post(runnable);
-    }
-
-    private void stopButtonLoop() {
-        if (runnable != null) handler.removeCallbacks(runnable);
-    }
-
     private void updateCoordinateDisplay() {
-        koor.setText(String.format("(%.2f, %.2f, %.2f, %.2f)", valX, valY, valZ, valGripper));
+        koor.setText(String.format("(%.2f, %.2f)", valX, valY));
     }
+
     private void resetCoordinates() {
         valX = 0f;
         valY = 0f;
-        valZ = 0f;
-        valGripper = 0f;
         updateCoordinateDisplay();
 
         // Kirim reset ke server jika masih terhubung
-        if (isConnected) sendCoordinate(valX, valY, valZ, valGripper);
+        if (isConnected) sendCoordinate(valX, valY);
     }
 
     private void showIpPortDialog() {
@@ -207,8 +172,9 @@ public class MainActivity extends AppCompatActivity {
                         return;
                     }
                     int port;
-                    try { port = Integer.parseInt(portStr); }
-                    catch (NumberFormatException e) {
+                    try {
+                        port = Integer.parseInt(portStr);
+                    } catch (NumberFormatException e) {
                         Toast.makeText(this, "Port must be a number", Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -246,31 +212,31 @@ public class MainActivity extends AppCompatActivity {
         }).start();
     }
 
-    private void sendCoordinate(float x, float y, float z, float gripper) {
+    private void sendCoordinate(float x, float y) {
         if (socket != null && isConnected) {
-            String msg = x + "," + y + "," + z + "," + gripper;
+            String msg = x + "," + y;
             socket.send(msg.getBytes(ZMQ.CHARSET));
             Log.d("ZMQ", "Sent: " + msg);
         }
     }
-    //Testing
-    private void nyalakanLed() {
-        if (socket != null && isConnected) {
 
-            if (kondisiLed == 0){
-                msg = "0";
-                kondisiLed = 1;
-            } else if (kondisiLed == 1){
-                msg = "1";
-                kondisiLed = 0;
-            }
-            socket.send(msg.getBytes(ZMQ.CHARSET));
-            Log.d("ZMQ", "Sent: " + msg);
-            runOnUiThread(() -> {
-                Toast.makeText(this, "Data terkirim", Toast.LENGTH_SHORT).show();
-            });
-        }
-    }
+    //Testing
+//    private void nyalakanLed() {
+//        if (socket != null && isConnected) {
+//            if (kondisiLed == 0) {
+//                msg = "0";
+//                kondisiLed = 1;
+//            } else if (kondisiLed == 1) {
+//                msg = "1";
+//                kondisiLed = 0;
+//            }
+//            socket.send(msg.getBytes(ZMQ.CHARSET));
+//            Log.d("ZMQ", "Sent: " + msg);
+//            runOnUiThread(() -> {
+//                Toast.makeText(this, "Data terkirim", Toast.LENGTH_SHORT).show();
+//            });
+//        }
+//    }
 
     private void disconnectFromServer() {
         new Thread(() -> {
@@ -292,9 +258,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        stopButtonLoop();
         disconnectFromServer();
         resetCoordinates();
+        if (receiver != null) receiver.stopReceiver();
 
     }
 }
